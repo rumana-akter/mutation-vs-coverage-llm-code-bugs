@@ -39,6 +39,25 @@ model) pair, the mean Fault Trigger Rate (FTR) and Fault Detection Rate
 coverage, branch coverage, and mutation testing, averaged over 100
 randomized selection runs per fault.
 
+## Executive Summary
+
+This project reproduces the experimental methodology behind Table IV on a
+reduced HumanEval dataset, because the original paper's generated faults
+and test artifacts were not publicly available. Across 40 HumanEval tasks
+and 200 generated candidate implementations, the automated pipeline
+selected 8 behavioral divergences for analysis. The inclusive result
+produced mutation FTR/FDR of 0.950/0.700, compared with 0.633/0.484 for
+both branch and statement coverage. A post-hoc semantic validity audit
+found that two of the selected cases reflected ground-truth or
+exact-equality issues rather than genuine candidate faults; after
+excluding only those two in a sensitivity analysis, FTR equaled FDR for
+all three criteria. This reduced experiment therefore does not numerically
+reproduce the original paper's low-FDR trend, but it does reproduce the
+experimental procedure and surfaces practical issues around
+reproducibility, benchmark ground truth, and fault classification. Full
+detail, including the per-fault breakdown and the audit's reasoning, is in
+Section 11 and `FINAL_RESULTS_AUDIT.md`.
+
 ## 3. Understanding of Table IV
 
 Table IV is built from the paper's experimental protocol (Section V),
@@ -116,9 +135,9 @@ Consequently:
 
 With the user's explicit sign-off (recorded in `PLAN.md` Section 9), we
 used **Claude** — Sonnet, then Haiku — as a single substitute
-fault-generating LLM, and built a self-contained pipeline that reproduces
-the paper's *method* exactly, just on a much smaller, independently
-constructed dataset:
+fault-generating LLM, and built a self-contained pipeline that follows the
+experimental procedure described in Section V, just on a much smaller,
+independently constructed dataset:
 
 1. A tiny, fully hand-verifiable **synthetic experiment** (Section 6
    below) to validate every piece of machinery before touching real code.
@@ -126,8 +145,8 @@ constructed dataset:
    implementations generated blind (given only the task's docstring/
    signature, never the reference), a test pool generated blind
    separately, real fault classification against the real HumanEval
-   reference, and the paper's exact randomized sampling protocol run for
-   real, 100 iterations per fault per criterion.
+   reference, and the paper's described randomized criterion-guided
+   sampling procedure run for real, 100 iterations per fault per criterion.
 
 ## 5. Reproduction Method
 
@@ -257,8 +276,13 @@ Per Definition 7's denominator (killed + surviving, i.e. excluding
 equivalent mutants), we make no attempt at automatic equivalent-mutant
 detection (an open, largely undecidable problem). Instead the "target"
 score `sample_test_suite` aims for is always whatever the *full test pool*
-achieves — exactly mirroring the paper's own "match the full pool's score"
-protocol — which sidesteps needing to identify equivalence at all.
+achieves, mirroring the paper's own "match the full pool's score"
+procedure. Because both the full-pool target and sampled suites are
+evaluated against the same generated mutant set, equivalent mutants do not
+affect which sampled subset matches the full-pool score. However, the
+reported mutation score should still be understood as an operational score
+over the generated mutants rather than an equivalent-mutant-corrected
+score.
 
 ## 10. Randomized Sampling Procedure
 
@@ -311,10 +335,15 @@ The real HumanEval+ pilot was run in two batches under an identical, frozen
 protocol: an initial 20-task batch (audited in full — see `AUDIT.md` —
 before being trusted), and a second, independently-selected 20-task batch
 run afterward under the same methodology with no further changes, per a
-pre-registered scale-up plan. **40 HumanEval tasks attempted in total; 8
-real faults found** (5 in batch 1, 3 in batch 2). 200 candidates generated
-(100/batch), 23 classified faulty, 2,400 sampled-suite evaluations executed
-(1,500 batch 1 + 900 batch 2), zero timeout events.
+pre-registered scale-up plan. **40 HumanEval tasks attempted in total; the
+automated pipeline selected 8 behavioral divergences for analysis** (5 in
+batch 1, 3 in batch 2). 200 candidates generated (100/batch), 23 classified
+faulty, 2,400 sampled-suite evaluations executed (1,500 batch 1 + 900
+batch 2), zero timeout events. A post-hoc semantic audit (Section 11.4,
+`FINAL_RESULTS_AUDIT.md`) later classified 5 of these 8 as clear genuine
+candidate faults, 1 (`encrypt`) as uncertain, 1 (`find_zero`) as a
+numerical-equivalence artifact, and 1 (`valid_date`) as a benchmark/
+reference defect.
 
 ### 11.2 View A — Inclusive predeclared-protocol result
 
@@ -688,7 +717,7 @@ All of the following are also recorded, with full context, in `PLAN.md`
 
 ## 16. Threats to Validity
 
-- **Sample size.** 8 real faults (across 40 attempted tasks) is far too
+- **Sample size.** 8 selected cases (across 40 attempted tasks) is far too
   small to draw any quantitative conclusion about HumanEval as a
   benchmark; it is only large enough to validate that our pipeline can
   find, classify, and evaluate real faults correctly, and to illustrate
