@@ -16,8 +16,8 @@ interview with Professor Baudry).
   compared, so JSON-sourced test data (list) and native Python return
   values (list or tuple) always compare correctly regardless of which side
   of a comparison they came from.
-- `src/sampling.py` — the paper's exact randomized criterion-guided
-  sampling protocol (Section V), generic over any monotonic score
+- `src/sampling.py` — the paper's described randomized criterion-guided
+  sampling procedure (Section V), generic over any monotonic score
   function, deterministic under seeding, with edge cases handled.
 - `src/coverage_utils.py` — real statement and branch coverage via
   `coverage.py`, instrumented *inside* the timeout-guarded worker process
@@ -42,9 +42,13 @@ interview with Professor Baudry).
 - **The synthetic experiment** (fully working, hand-verifiable): a
   boundary-condition bug where mutation-adequate suites achieve FTR 1.00
   vs. statement/branch's 0.49.
-- **A real (non-synthetic) Table IV result**, from **8 real faults found
-  across 40 HumanEval tasks** (two batches of 20), using Claude-generated
-  (Sonnet then Haiku 4.5) candidate code and tests:
+- **A real (non-synthetic) Table IV result**, from **8 automatically
+  selected behavioral divergences found across 40 HumanEval tasks** (two
+  batches of 20), using Claude-generated (Sonnet then Haiku 4.5) candidate
+  code and tests. A later semantic audit (`FINAL_RESULTS_AUDIT.md`)
+  classified 5 of these 8 as clear genuine candidate faults, 1
+  (`encrypt`) as uncertain, 1 (`find_zero`) as a numerical-equivalence
+  artifact, and 1 (`valid_date`) as a benchmark/reference defect:
 
   **Batch 1** (originally audited, 5 faults) — `results/real_experiment_table_iv.csv`:
 
@@ -74,7 +78,11 @@ interview with Professor Baudry).
   traces to a real bug in HumanEval's own canonical solution. Both are
   reported transparently (see `EXPERIMENT_LOG.md` Entry 14 and
   `report/report.md` §11-13) rather than quietly folded into an
-  undifferentiated "8 faults" headline number.
+  undifferentiated "8 faults" headline number. A further audit finding,
+  not specific to batch 2: `encrypt` (batch 1) is also flagged as
+  uncertain (Category D) rather than a confirmed genuine fault, since the
+  specification is silent about uppercase-letter handling (see
+  `FINAL_RESULTS_AUDIT.md`).
 
 ## What remains unreproduced
 
@@ -233,10 +241,13 @@ Section 16 says so explicitly. It validates the pipeline and illustrates
 qualitative phenomena, not a quantitative claim about HumanEval.
 
 **"What was the single most interesting result?"** Two, for different
-reasons: `encrypt` (5/5 independent Haiku candidates make the identical
-mistake — a genuine, reproducible model blind spot) and `valid_date` (a
-real bug in the *benchmark's own reference solution*, caught only because
-we investigated an anomaly instead of trusting the aggregate number).
+reasons: `encrypt` (all five independently generated candidates made the
+same interpretation choice about uppercase letters; however, the
+specification is ambiguous about case handling, so we treat this as a
+reproducible behavioral divergence rather than a confirmed model bug, per
+`FINAL_RESULTS_AUDIT.md`) and `valid_date` (a real bug in the *benchmark's
+own reference solution*, caught only because we investigated an anomaly
+instead of trusting the aggregate number).
 
 ## Short explanations for each major component (for your own use)
 

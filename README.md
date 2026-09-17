@@ -7,8 +7,9 @@ bugs in large language models generated code?"* (arXiv:2609.09315).
 **Read this first:** the paper's replication package does not exist publicly
 (it's a very recent preprint) — see `PLAN.md` Section 3 for the documented
 search. This repository is therefore a **focused methodological
-reproduction**, not a numeric reproduction: it implements the paper's exact
-FTR/FDR definitions and randomized sampling protocol, validates them on a
+reproduction**, not a numeric reproduction: it implements the paper's
+described FTR/FDR definitions and randomized criterion-guided sampling
+procedure, validates them on a
 hand-crafted synthetic example, and then exercises them on real HumanEval
 tasks using Claude-generated (not the paper's) faulty code and tests. See
 `report/report.md` for the full account, including how our numbers compare
@@ -100,12 +101,16 @@ All numbers in these files were produced by actually running the code above
 
 ## Known limitations (see `report/report.md` for full discussion)
 
-- 8 real faults were found across 40 attempted HumanEval tasks (Claude
-  Sonnet produced 0 faults across 45 candidates on 6 tasks; Claude Haiku 4.5
-  produced all 8 faults used here, across two batches). This is far too
-  small a sample to draw any statistical conclusion about HumanEval — it
-  validates the pipeline and illustrates the paper's qualitative claims,
-  nothing more.
+- The automated pipeline selected 8 behavioral divergences across 40
+  attempted HumanEval tasks (Claude Sonnet produced 0 faults across 45
+  candidates on 6 tasks; Claude Haiku 4.5 produced all 8 cases used here,
+  across two batches). A later semantic audit (`FINAL_RESULTS_AUDIT.md`)
+  classified 5 of these 8 as clear genuine candidate faults, 1 (`encrypt`)
+  as uncertain, 1 (`find_zero`) as a numerical-equivalence artifact, and 1
+  (`valid_date`) as a benchmark/reference defect. This is far too small a
+  sample to draw any statistical conclusion about HumanEval; it validates
+  the pipeline and illustrates the paper's qualitative claims, nothing
+  more.
 - **2 of the 8 faults are measurement artifacts, not genuine candidate
   bugs** — `find_zero` (exact-equality comparison applied to independent
   floating-point root-finders that never converge to bit-identical values)

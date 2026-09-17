@@ -203,9 +203,9 @@ actually ran:
      cannot use the paper's), using a documented, simple, transparent
      method (see assumptions below) rather than 5 paid commercial LLMs.
    - Generate a test pool for each faulty implementation.
-   - Run the exact criterion-guided random sampling protocol from
+   - Run the criterion-guided random sampling procedure described in
      Section V, with 100 iterations per fault per criterion, computing
-     FTR/FDR from actual code execution — not simulated numbers.
+     FTR/FDR from actual code execution, not simulated numbers.
    - Aggregate into a Table-IV-shaped CSV/Markdown table, clearly labeled
      as a **"Focused reproduction of Table IV — HumanEval+ subset"**, not
      as the original Table IV.
