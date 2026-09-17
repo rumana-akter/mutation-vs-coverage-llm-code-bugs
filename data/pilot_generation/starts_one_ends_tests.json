@@ -1,0 +1,9 @@
+[
+  {"args": [1], "expected_output": 1},
+  {"args": [2], "expected_output": 18},
+  {"args": [3], "expected_output": 180},
+  {"args": [4], "expected_output": 1800},
+  {"args": [5], "expected_output": 18000},
+  {"args": [6], "expected_output": 180000},
+  {"args": [7], "expected_output": 1800000}
+]

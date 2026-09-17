@@ -1,0 +1,61 @@
+### IMPLEMENTATION 1 ###
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    total = 0
+    product = 1
+    for n in numbers:
+        total += n
+        product *= n
+    return (total, product)
+
+
+### IMPLEMENTATION 2 ###
+from typing import List, Tuple
+from functools import reduce
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    if not numbers:
+        return (0, 1)
+    return (sum(numbers), reduce(lambda a, b: a * b, numbers))
+
+
+### IMPLEMENTATION 3 ###
+from typing import List, Tuple
+import math
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    return (sum(numbers), math.prod(numbers))
+
+
+### IMPLEMENTATION 4 ###
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    def helper(index, acc_sum, acc_product):
+        if index == len(numbers):
+            return (acc_sum, acc_product)
+        return helper(index + 1, acc_sum + numbers[index], acc_product * numbers[index])
+
+    return helper(0, 0, 1)
+
+
+### IMPLEMENTATION 5 ###
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    result_sum = 0
+    result_product = 1
+    idx = 0
+    n = len(numbers)
+    while idx < n:
+        value = numbers[idx]
+        result_sum = result_sum + value
+        result_product = result_product * value
+        idx += 1
+    return (result_sum, result_product)

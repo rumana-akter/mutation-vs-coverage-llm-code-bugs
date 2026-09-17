@@ -1,0 +1,35 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+def all_prefixes(string: str) -> List[str]:
+    return [string[:i] for i in range(1, len(string) + 1)]
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+def all_prefixes(string: str) -> List[str]:
+    result = []
+    for i in range(1, len(string) + 1):
+        result.append(string[:i])
+    return result
+
+### IMPLEMENTATION 3 ###
+from typing import List
+from itertools import accumulate
+
+def all_prefixes(string: str) -> List[str]:
+    return list(accumulate(string))
+
+### IMPLEMENTATION 4 ###
+from typing import List
+
+def all_prefixes(string: str) -> List[str]:
+    if not string:
+        return []
+    return all_prefixes(string[:-1]) + [string]
+
+### IMPLEMENTATION 5 ###
+from typing import List
+
+def all_prefixes(string: str) -> List[str]:
+    return [string[:i+1] for i, _ in enumerate(string)]

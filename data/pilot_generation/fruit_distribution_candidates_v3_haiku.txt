@@ -1,0 +1,32 @@
+### IMPLEMENTATION 1 ###
+import re
+
+def fruit_distribution(s, n):
+    numbers = re.findall(r'\d+', s)
+    return n - int(numbers[0]) - int(numbers[1])
+
+### IMPLEMENTATION 2 ###
+def fruit_distribution(s, n):
+    words = s.split()
+    apples = int(words[0])
+    oranges = int(words[3])
+    return n - apples - oranges
+
+### IMPLEMENTATION 3 ###
+import re
+
+def fruit_distribution(s, n):
+    match = re.search(r'(\d+)\s+apples\s+and\s+(\d+)\s+oranges', s)
+    apples, oranges = int(match.group(1)), int(match.group(2))
+    return n - apples - oranges
+
+### IMPLEMENTATION 4 ###
+def fruit_distribution(s, n):
+    s_clean = s.replace('apples and ', '').replace(' oranges', '')
+    apples, oranges = map(int, s_clean.split())
+    return n - apples - oranges
+
+### IMPLEMENTATION 5 ###
+def fruit_distribution(s, n):
+    numbers = list(map(int, filter(str.isdigit, s.split())))
+    return n - sum(numbers)

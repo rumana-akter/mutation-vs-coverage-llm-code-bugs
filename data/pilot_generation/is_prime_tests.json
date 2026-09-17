@@ -1,0 +1,14 @@
+[
+  {"args": [6], "expected_output": false},
+  {"args": [101], "expected_output": true},
+  {"args": [11], "expected_output": true},
+  {"args": [13441], "expected_output": true},
+  {"args": [61], "expected_output": true},
+  {"args": [4], "expected_output": false},
+  {"args": [1], "expected_output": false},
+  {"args": [0], "expected_output": false},
+  {"args": [2], "expected_output": true},
+  {"args": [3], "expected_output": true},
+  {"args": [9973], "expected_output": true},
+  {"args": [9975], "expected_output": false}
+]

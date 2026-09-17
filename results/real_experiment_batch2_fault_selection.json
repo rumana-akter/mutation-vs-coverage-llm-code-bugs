@@ -1,0 +1,191 @@
+[
+  {
+    "task_id": "HumanEval/38",
+    "entry_point": "decode_cyclic",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/9",
+    "entry_point": "rolling_max",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/83",
+    "entry_point": "starts_one_ends",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 1,
+    "n_tests": 7,
+    "outcome": "fault_selected",
+    "selected_candidate_index": 3,
+    "difficulty": 0.8571428571428572,
+    "meets_paper_threshold_0.75": true
+  },
+  {
+    "task_id": "HumanEval/74",
+    "entry_point": "total_match",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/69",
+    "entry_point": "search",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/47",
+    "entry_point": "median",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/36",
+    "entry_point": "fizz_buzz",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 9,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/160",
+    "entry_point": "do_algebra",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 11,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/31",
+    "entry_point": "is_prime",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/125",
+    "entry_point": "split_words",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/14",
+    "entry_point": "all_prefixes",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 10,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/13",
+    "entry_point": "greatest_common_divisor",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/32",
+    "entry_point": "find_zero",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 5,
+    "n_tests": 8,
+    "outcome": "fault_selected",
+    "selected_candidate_index": 0,
+    "difficulty": 0.0,
+    "meets_paper_threshold_0.75": false
+  },
+  {
+    "task_id": "HumanEval/67",
+    "entry_point": "fruit_distribution",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 10,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/71",
+    "entry_point": "triangle_area",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 10,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/149",
+    "entry_point": "sorted_list_sum",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 10,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/62",
+    "entry_point": "derivative",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 10,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/124",
+    "entry_point": "valid_date",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 5,
+    "n_tests": 15,
+    "outcome": "fault_selected",
+    "selected_candidate_index": 0,
+    "difficulty": 0.8666666666666667,
+    "meets_paper_threshold_0.75": true
+  },
+  {
+    "task_id": "HumanEval/68",
+    "entry_point": "pluck",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 10,
+    "outcome": "no_fault_found"
+  },
+  {
+    "task_id": "HumanEval/132",
+    "entry_point": "is_nested",
+    "fault_model": "claude-haiku-4-5",
+    "n_candidates": 5,
+    "n_faulty_candidates": 0,
+    "n_tests": 12,
+    "outcome": "no_fault_found"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {"args": [1, 4], "expected_output": true},
+  {"args": [2, 2], "expected_output": true},
+  {"args": [8, 2], "expected_output": true},
+  {"args": [3, 2], "expected_output": false},
+  {"args": [3, 1], "expected_output": false},
+  {"args": [5, 3], "expected_output": false},
+  {"args": [16, 2], "expected_output": true},
+  {"args": [143214, 16], "expected_output": false},
+  {"args": [1, 1], "expected_output": true},
+  {"args": [2, 1], "expected_output": false},
+  {"args": [9, 3], "expected_output": true},
+  {"args": [1000000, 10], "expected_output": true},
+  {"args": [10, 100], "expected_output": false},
+  {"args": [1, 2], "expected_output": true}
+]

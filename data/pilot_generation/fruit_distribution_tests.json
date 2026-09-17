@@ -1,0 +1,12 @@
+[
+  {"args": ["5 apples and 6 oranges", 19], "expected_output": 8},
+  {"args": ["0 apples and 1 oranges", 3], "expected_output": 2},
+  {"args": ["2 apples and 3 oranges", 100], "expected_output": 95},
+  {"args": ["100 apples and 1 oranges", 120], "expected_output": 19},
+  {"args": ["5 apples and 5 oranges", 10], "expected_output": 0},
+  {"args": ["0 apples and 0 oranges", 5], "expected_output": 5},
+  {"args": ["150 apples and 200 oranges", 500], "expected_output": 150},
+  {"args": ["999 apples and 1 oranges", 1000], "expected_output": 0},
+  {"args": ["10 apples and 20 oranges", 50], "expected_output": 20},
+  {"args": ["3 apples and 3 oranges", 1000], "expected_output": 994}
+]

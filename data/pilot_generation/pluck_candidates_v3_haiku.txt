@@ -1,0 +1,60 @@
+### IMPLEMENTATION 1 ###
+def pluck(arr):
+    smallest_value = None
+    smallest_index = None
+
+    for i, num in enumerate(arr):
+        if num % 2 == 0:
+            if smallest_value is None or num < smallest_value:
+                smallest_value = num
+                smallest_index = i
+
+    if smallest_value is None:
+        return []
+    return [smallest_value, smallest_index]
+
+### IMPLEMENTATION 2 ###
+def pluck(arr):
+    even_items = [(val, idx) for idx, val in enumerate(arr) if val % 2 == 0]
+
+    if not even_items:
+        return []
+
+    min_val, min_idx = min(even_items, key=lambda x: (x[0], x[1]))
+    return [min_val, min_idx]
+
+### IMPLEMENTATION 3 ###
+def pluck(arr):
+    even_items = [(val, idx) for idx, val in enumerate(arr) if val % 2 == 0]
+
+    if not even_items:
+        return []
+
+    return list(min(even_items))
+
+### IMPLEMENTATION 4 ###
+def pluck(arr):
+    from functools import reduce
+
+    def reducer(acc, item):
+        idx, val = item
+        if val % 2 != 0:
+            return acc
+        if acc is None or (val, idx) < acc:
+            return (val, idx)
+        return acc
+
+    result = reduce(reducer, enumerate(arr), None)
+    return list(result) if result is not None else []
+
+### IMPLEMENTATION 5 ###
+def pluck(arr):
+    even_dict = {idx: val for idx, val in enumerate(arr) if val % 2 == 0}
+
+    if not even_dict:
+        return []
+
+    min_val = min(even_dict.values())
+    min_idx = min(idx for idx, val in even_dict.items() if val == min_val)
+
+    return [min_val, min_idx]

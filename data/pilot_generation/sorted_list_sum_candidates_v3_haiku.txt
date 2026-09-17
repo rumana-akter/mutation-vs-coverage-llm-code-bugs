@@ -1,0 +1,32 @@
+### IMPLEMENTATION 1 ###
+def sorted_list_sum(lst):
+    even_length_strings = [s for s in lst if len(s) % 2 == 0]
+    return sorted(even_length_strings, key=lambda x: (len(x), x))
+
+### IMPLEMENTATION 2 ###
+def sorted_list_sum(lst):
+    filtered = list(filter(lambda x: len(x) % 2 == 0, lst))
+    return sorted(filtered, key=lambda x: (len(x), x))
+
+### IMPLEMENTATION 3 ###
+def sorted_list_sum(lst):
+    result = []
+    for word in lst:
+        if len(word) % 2 == 0:
+            result.append(word)
+    result.sort(key=lambda x: (len(x), x))
+    return result
+
+### IMPLEMENTATION 4 ###
+def sorted_list_sum(lst):
+    def is_even_length(s):
+        return len(s) % 2 == 0
+
+    filtered = filter(is_even_length, lst)
+    return sorted(filtered, key=lambda x: (len(x), x))
+
+### IMPLEMENTATION 5 ###
+def sorted_list_sum(lst):
+    even_strings = [word for word in lst if not (len(word) & 1)]
+    even_strings.sort(key=lambda x: (len(x), x))
+    return even_strings

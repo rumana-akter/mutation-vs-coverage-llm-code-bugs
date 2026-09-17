@@ -1,0 +1,2 @@
+benchmark,fault_model,mutation_FTR,branch_FTR,statement_FTR,mutation_FDR,branch_FDR,statement_FDR
+synthetic,hand-crafted,1.0,0.745,0.745,0.725,0.45999999999999996,0.45999999999999996

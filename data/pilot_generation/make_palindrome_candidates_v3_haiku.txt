@@ -1,0 +1,73 @@
+### IMPLEMENTATION 1 ###
+def make_palindrome(string: str) -> str:
+    if not string:
+        return string
+
+    for i in range(len(string)):
+        if string[i:] == string[i:][::-1]:
+            return string + string[:i][::-1]
+
+    return string
+
+### IMPLEMENTATION 2 ###
+def make_palindrome(string: str) -> str:
+    if not string:
+        return string
+
+    for i in range(len(string)):
+        suffix = string[i:]
+        left = 0
+        right = len(suffix) - 1
+        is_palin = True
+        while left < right:
+            if suffix[left] != suffix[right]:
+                is_palin = False
+                break
+            left += 1
+            right -= 1
+        if is_palin:
+            return string + string[:i][::-1]
+
+    return string
+
+### IMPLEMENTATION 3 ###
+def make_palindrome(string: str) -> str:
+    if not string:
+        return string
+
+    for num_chars in range(len(string) + 1):
+        candidate = string + string[:num_chars][::-1]
+        if candidate == candidate[::-1]:
+            return candidate
+
+    return string
+
+### IMPLEMENTATION 4 ###
+def make_palindrome(string: str) -> str:
+    if not string:
+        return string
+
+    def find_count(s, count):
+        result = s + s[:count][::-1]
+        if result == result[::-1]:
+            return count
+        if count >= len(s):
+            return count
+        return find_count(s, count + 1)
+
+    chars_to_add = find_count(string, 0)
+    return string + string[:chars_to_add][::-1]
+
+### IMPLEMENTATION 5 ###
+def make_palindrome(string: str) -> str:
+    if not string:
+        return string
+
+    i = 0
+    while i <= len(string):
+        candidate = string + string[:i][::-1]
+        if candidate == candidate[::-1]:
+            return candidate
+        i += 1
+
+    return string + string[::-1]

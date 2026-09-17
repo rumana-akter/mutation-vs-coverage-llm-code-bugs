@@ -1,0 +1,46 @@
+### IMPLEMENTATION 1 ###
+def pairs_sum_to_zero(l):
+    for i in range(len(l)):
+        for j in range(i + 1, len(l)):
+            if l[i] + l[j] == 0:
+                return True
+    return False
+
+### IMPLEMENTATION 2 ###
+def pairs_sum_to_zero(l):
+    seen = set()
+    for num in l:
+        if -num in seen:
+            return True
+        seen.add(num)
+    return False
+
+### IMPLEMENTATION 3 ###
+def pairs_sum_to_zero(l):
+    sorted_l = sorted(l)
+    left = 0
+    right = len(sorted_l) - 1
+    while left < right:
+        total = sorted_l[left] + sorted_l[right]
+        if total == 0:
+            return True
+        elif total < 0:
+            left += 1
+        else:
+            right -= 1
+    return False
+
+### IMPLEMENTATION 4 ###
+def pairs_sum_to_zero(l):
+    from collections import Counter
+    counter = Counter(l)
+    for num in counter:
+        if num == 0 and counter[num] > 1:
+            return True
+        elif num != 0 and -num in counter:
+            return True
+    return False
+
+### IMPLEMENTATION 5 ###
+def pairs_sum_to_zero(l):
+    return any(l[i] + l[j] == 0 for i in range(len(l)) for j in range(i + 1, len(l)))

@@ -1,0 +1,24 @@
+### IMPLEMENTATION 1 ###
+def derivative(xs: list):
+    return [(i + 1) * xs[i + 1] for i in range(len(xs) - 1)]
+
+### IMPLEMENTATION 2 ###
+def derivative(xs: list):
+    result = []
+    for i in range(1, len(xs)):
+        result.append(i * xs[i])
+    return result
+
+### IMPLEMENTATION 3 ###
+def derivative(xs: list):
+    return list(map(lambda idx_val: idx_val[0] * idx_val[1], enumerate(xs[1:], 1)))
+
+### IMPLEMENTATION 4 ###
+def derivative(xs: list):
+    return [coeff * multiplier for coeff, multiplier in zip(xs[1:], range(1, len(xs)))]
+
+### IMPLEMENTATION 5 ###
+def derivative(xs: list):
+    if len(xs) < 2:
+        return []
+    return [xs[i] * i for i in range(1, len(xs))]

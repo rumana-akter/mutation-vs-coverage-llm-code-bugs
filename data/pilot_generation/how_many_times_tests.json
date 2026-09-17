@@ -1,0 +1,17 @@
+[
+  {"args": ["", "a"], "expected_output": 0},
+  {"args": ["aaa", "a"], "expected_output": 3},
+  {"args": ["aaaa", "aa"], "expected_output": 3},
+  {"args": ["", "abc"], "expected_output": 0},
+  {"args": ["abcabc", "abc"], "expected_output": 2},
+  {"args": ["hello", "xyz"], "expected_output": 0},
+  {"args": ["aaaaa", "aa"], "expected_output": 4},
+  {"args": ["aaaaa", "aaa"], "expected_output": 3},
+  {"args": ["ababab", "aba"], "expected_output": 2},
+  {"args": ["aaa", "aaaa"], "expected_output": 0},
+  {"args": ["a", "a"], "expected_output": 1},
+  {"args": ["banana", "ana"], "expected_output": 2},
+  {"args": ["aaaa", "aaaa"], "expected_output": 1},
+  {"args": ["xxxxx", "xx"], "expected_output": 4},
+  {"args": ["aaaaa", "a"], "expected_output": 5}
+]

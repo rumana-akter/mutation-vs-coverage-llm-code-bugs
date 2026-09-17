@@ -1,0 +1,11 @@
+[
+  {"args": [50], "expected_output": 0},
+  {"args": [78], "expected_output": 2},
+  {"args": [79], "expected_output": 3},
+  {"args": [0], "expected_output": 0},
+  {"args": [1], "expected_output": 0},
+  {"args": [11], "expected_output": 0},
+  {"args": [13], "expected_output": 0},
+  {"args": [100], "expected_output": 3},
+  {"args": [150], "expected_output": 4}
+]

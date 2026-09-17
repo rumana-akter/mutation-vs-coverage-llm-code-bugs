@@ -1,0 +1,14 @@
+[
+  {"args": [[], []], "expected_output": []},
+  {"args": [["hi", "admin"], ["hI", "Hi"]], "expected_output": ["hI", "Hi"]},
+  {"args": [["hi", "admin"], ["hi", "hi", "admin", "project"]], "expected_output": ["hi", "admin"]},
+  {"args": [["hi", "admin"], ["hI", "hi", "hi"]], "expected_output": ["hI", "hi", "hi"]},
+  {"args": [["4"], ["1", "2", "3", "4", "5"]], "expected_output": ["4"]},
+  {"args": [["abc"], ["ab", "c"]], "expected_output": ["abc"]},
+  {"args": [["hello"], ["world"]], "expected_output": ["hello"]},
+  {"args": [["a"], ["bb"]], "expected_output": ["a"]},
+  {"args": [[], ["a", "b"]], "expected_output": []},
+  {"args": [[], [""]], "expected_output": []},
+  {"args": [["abc", "de"], ["a", "bcde"]], "expected_output": ["abc", "de"]},
+  {"args": [["project"], ["p", "r", "o", "j", "e", "c", "t"]], "expected_output": ["project"]}
+]

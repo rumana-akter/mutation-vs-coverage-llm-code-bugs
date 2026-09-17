@@ -1,0 +1,52 @@
+### IMPLEMENTATION 1 ###
+def sort_array(arr):
+    return sorted(arr, key=lambda x: (bin(abs(x)).count('1'), x))
+
+### IMPLEMENTATION 2 ###
+def sort_array(arr):
+    def count_bits(n):
+        n = abs(n)
+        count = 0
+        while n:
+            count += n & 1
+            n >>= 1
+        return count
+    return sorted(arr, key=lambda x: (count_bits(x), x))
+
+### IMPLEMENTATION 3 ###
+def sort_array(arr):
+    def count_bits(n):
+        n = abs(n)
+        count = 0
+        while n:
+            n &= n - 1
+            count += 1
+        return count
+    return sorted(arr, key=lambda x: (count_bits(x), x))
+
+### IMPLEMENTATION 4 ###
+def sort_array(arr):
+    from functools import cmp_to_key
+    def count_bits(n):
+        return bin(abs(n)).count('1')
+    def compare(a, b):
+        a_ones, b_ones = count_bits(a), count_bits(b)
+        if a_ones != b_ones:
+            return a_ones - b_ones
+        return a - b
+    return sorted(arr, key=cmp_to_key(compare))
+
+### IMPLEMENTATION 5 ###
+def sort_array(arr):
+    def count_bits(n):
+        return bin(abs(n)).count('1')
+    groups = {}
+    for num in arr:
+        ones = count_bits(num)
+        if ones not in groups:
+            groups[ones] = []
+        groups[ones].append(num)
+    result = []
+    for ones in sorted(groups.keys()):
+        result.extend(sorted(groups[ones]))
+    return result

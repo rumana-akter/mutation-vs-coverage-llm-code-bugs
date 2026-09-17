@@ -1,0 +1,17 @@
+[
+  {"args": [[1, 2, 3]], "expected_output": false},
+  {"args": [[1, 2, -4, 5]], "expected_output": true},
+  {"args": [[]], "expected_output": false},
+  {"args": [[0]], "expected_output": false},
+  {"args": [[-1]], "expected_output": true},
+  {"args": [[1]], "expected_output": false},
+  {"args": [[1, -1]], "expected_output": false},
+  {"args": [[1, -2]], "expected_output": true},
+  {"args": [[-1, 1]], "expected_output": true},
+  {"args": [[5, -5, 5, -5]], "expected_output": false},
+  {"args": [[-5, -5, -5]], "expected_output": true},
+  {"args": [[100, 200, 300]], "expected_output": false},
+  {"args": [[0, 0, 0]], "expected_output": false},
+  {"args": [[10, -20, 15]], "expected_output": true},
+  {"args": [[3, -3, -1]], "expected_output": true}
+]

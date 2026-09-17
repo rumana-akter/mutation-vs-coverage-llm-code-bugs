@@ -1,0 +1,65 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    for i in range(len(numbers)):
+        for j in range(len(numbers)):
+            if i != j and abs(numbers[i] - numbers[j]) < threshold:
+                return True
+    return False
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    sorted_numbers = sorted(numbers)
+    for i in range(1, len(sorted_numbers)):
+        if sorted_numbers[i] - sorted_numbers[i - 1] < threshold:
+            return True
+    return False
+
+### IMPLEMENTATION 3 ###
+from itertools import combinations
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    return any(abs(a - b) < threshold for a, b in combinations(numbers, 2))
+
+### IMPLEMENTATION 4 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    n = len(numbers)
+    if n < 2:
+        return False
+    idx = 0
+    while idx < n:
+        jdx = idx + 1
+        while jdx < n:
+            diff = numbers[idx] - numbers[jdx]
+            if diff < 0:
+                diff = -diff
+            if diff < threshold:
+                return True
+            jdx += 1
+        idx += 1
+    return False
+
+### IMPLEMENTATION 5 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    remaining = list(numbers)
+    found = False
+    while remaining and not found:
+        current = remaining.pop()
+        for other in remaining:
+            if abs(current - other) < threshold:
+                found = True
+                break
+    return found

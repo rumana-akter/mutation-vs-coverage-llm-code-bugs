@@ -1,0 +1,129 @@
+### IMPLEMENTATION 1 ###
+import math
+
+def find_zero(xs: list):
+    def poly(xs, x):
+        return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+    def poly_derivative(xs, x):
+        return sum([i * coeff * math.pow(x, i-1) for i, coeff in enumerate(xs[1:], 1)])
+
+    x = 1.0
+    for _ in range(100):
+        fx = poly(xs, x)
+        fpx = poly_derivative(xs, x)
+        if abs(fpx) < 1e-10:
+            break
+        x_new = x - fx / fpx
+        if abs(x_new - x) < 1e-10:
+            break
+        x = x_new
+    return x
+
+### IMPLEMENTATION 2 ###
+import math
+
+def find_zero(xs: list):
+    def poly(xs, x):
+        return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+    left, right = -100.0, 100.0
+    while poly(xs, left) * poly(xs, right) > 0:
+        left *= 2
+        right *= 2
+
+    for _ in range(100):
+        mid = (left + right) / 2
+        if abs(poly(xs, mid)) < 1e-10:
+            return mid
+        if poly(xs, mid) * poly(xs, left) < 0:
+            right = mid
+        else:
+            left = mid
+    return (left + right) / 2
+
+### IMPLEMENTATION 3 ###
+import math
+
+def find_zero(xs: list):
+    def poly(xs, x):
+        return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+    x0, x1 = 0.0, 1.0
+    for _ in range(100):
+        f0 = poly(xs, x0)
+        f1 = poly(xs, x1)
+        if abs(f1 - f0) < 1e-10:
+            break
+        x2 = x1 - f1 * (x1 - x0) / (f1 - f0)
+        if abs(x2 - x1) < 1e-10:
+            break
+        x0, x1 = x1, x2
+    return x1
+
+### IMPLEMENTATION 4 ###
+import math
+
+def find_zero(xs: list):
+    def poly(xs, x):
+        return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+    left, right = -100.0, 100.0
+    while poly(xs, left) * poly(xs, right) > 0:
+        left *= 2
+        right *= 2
+
+    for _ in range(100):
+        f_left = poly(xs, left)
+        f_right = poly(xs, right)
+        if abs(f_left - f_right) < 1e-10:
+            break
+        x_pos = left - f_left * (right - left) / (f_right - f_left)
+        f_pos = poly(xs, x_pos)
+        if abs(f_pos) < 1e-10:
+            return x_pos
+        if f_pos * f_left < 0:
+            right = x_pos
+        else:
+            left = x_pos
+    return left
+
+### IMPLEMENTATION 5 ###
+import math
+
+def find_zero(xs: list):
+    def poly(xs, x):
+        return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+    x0, x1, x2 = -1.0, 0.0, 1.0
+    for _ in range(50):
+        y0 = poly(xs, x0)
+        y1 = poly(xs, x1)
+        y2 = poly(xs, x2)
+
+        h0 = x1 - x0
+        h1 = x2 - x1
+        d0 = (y1 - y0) / h0
+        d1 = (y2 - y1) / h1
+        a = (d1 - d0) / (h0 + h1)
+
+        if abs(a) < 1e-10:
+            break
+
+        b = d1 + h1 * a
+        c = y2
+        disc = b * b - 4 * a * c
+
+        if disc < 0:
+            x0, x1, x2 = x1, x2, x2 + 1.0
+            continue
+
+        sq = math.sqrt(disc)
+        denominator = b + (sq if b > 0 else -sq)
+        x_new = x2 - 2 * c / denominator
+
+        if abs(poly(xs, x_new)) < 1e-10:
+            return x_new
+
+        x0, x1, x2 = x1, x2, x_new
+    return x2

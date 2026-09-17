@@ -1,0 +1,93 @@
+### IMPLEMENTATION 1 ###
+def is_nested(string):
+    max_depth = 0
+    current_depth = 0
+
+    for char in string:
+        if char == '[':
+            current_depth += 1
+            max_depth = max(max_depth, current_depth)
+        elif char == ']' and current_depth > 0:
+            current_depth -= 1
+            if current_depth == 0 and max_depth >= 2:
+                return True
+
+    return False
+
+### IMPLEMENTATION 2 ###
+def is_nested(string):
+    stack = []
+    max_depth = 0
+
+    for char in string:
+        if char == '[':
+            stack.append(char)
+            max_depth = max(max_depth, len(stack))
+        elif char == ']' and stack:
+            stack.pop()
+            if len(stack) == 0 and max_depth >= 2:
+                return True
+
+    return False
+
+### IMPLEMENTATION 3 ###
+def is_nested(string):
+    open_brackets = 0
+    max_open = 0
+    nested_found = False
+
+    for char in string:
+        if char == '[':
+            open_brackets += 1
+            max_open = max(max_open, open_brackets)
+        else:
+            if open_brackets > 0:
+                open_brackets -= 1
+                if open_brackets == 0 and max_open >= 2:
+                    nested_found = True
+
+    return nested_found
+
+### IMPLEMENTATION 4 ###
+def is_nested(string):
+    def check_subsequence(idx, depth, peak_depth, memo={}):
+        if idx == len(string):
+            return depth == 0 and peak_depth >= 2
+
+        key = (idx, depth, peak_depth)
+        if key in memo:
+            return memo[key]
+
+        char = string[idx]
+        result = False
+
+        if char == '[':
+            result = check_subsequence(idx + 1, depth + 1, max(peak_depth, depth + 1), memo)
+        elif char == ']' and depth > 0:
+            result = check_subsequence(idx + 1, depth - 1, peak_depth, memo)
+
+        if not result:
+            result = check_subsequence(idx + 1, depth, peak_depth, memo)
+
+        memo[key] = result
+        return result
+
+    return check_subsequence(0, 0, 0)
+
+### IMPLEMENTATION 5 ###
+def is_nested(string):
+    depth = 0
+    reached_nested = False
+
+    for char in string:
+        if char == '[':
+            depth += 1
+            if depth >= 2:
+                reached_nested = True
+        else:
+            if depth > 0:
+                depth -= 1
+                if reached_nested and depth == 0:
+                    return True
+
+    return False

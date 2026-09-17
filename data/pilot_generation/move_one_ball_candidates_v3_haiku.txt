@@ -1,0 +1,79 @@
+### IMPLEMENTATION 1 ###
+def move_one_ball(arr):
+    if not arr:
+        return True
+
+    n = len(arr)
+    for rotation in range(n):
+        rotated = arr[-rotation:] + arr[:-rotation] if rotation > 0 else arr
+        if all(rotated[i] <= rotated[i+1] for i in range(n-1)):
+            return True
+
+    return False
+
+### IMPLEMENTATION 2 ###
+def move_one_ball(arr):
+    if not arr:
+        return True
+
+    from collections import deque
+    d = deque(arr)
+
+    for _ in range(len(arr)):
+        if all(d[i] <= d[i+1] for i in range(len(d)-1)):
+            return True
+        d.rotate(1)
+
+    return False
+
+### IMPLEMENTATION 3 ###
+def move_one_ball(arr):
+    if not arr:
+        return True
+
+    n = len(arr)
+    break_count = 0
+
+    for i in range(n):
+        if arr[i] > arr[(i+1) % n]:
+            break_count += 1
+
+    if break_count == 0:
+        return True
+    if break_count == 1:
+        return arr[n-1] <= arr[0]
+    return False
+
+### IMPLEMENTATION 4 ###
+def move_one_ball(arr):
+    if not arr:
+        return True
+
+    n = len(arr)
+    min_index = arr.index(min(arr))
+
+    for i in range(n-1):
+        idx1 = (min_index + i) % n
+        idx2 = (min_index + i + 1) % n
+        if arr[idx1] > arr[idx2]:
+            return False
+
+    return True
+
+### IMPLEMENTATION 5 ###
+def move_one_ball(arr):
+    if not arr:
+        return True
+
+    n = len(arr)
+
+    for start_offset in range(n):
+        is_sorted = True
+        for i in range(n-1):
+            if arr[(start_offset + i) % n] > arr[(start_offset + i + 1) % n]:
+                is_sorted = False
+                break
+        if is_sorted:
+            return True
+
+    return False

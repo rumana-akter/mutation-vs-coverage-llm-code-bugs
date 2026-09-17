@@ -1,0 +1,18 @@
+# Core testing / experiment infrastructure
+pytest==9.1.1
+coverage==7.16.0
+
+# Table / CSV aggregation for build_table_iv.py
+pandas==3.0.5
+tabulate==0.10.0
+
+# HumanEval benchmark data (bundles HumanEval.jsonl.gz locally - no network
+# fetch needed). Used only to load task prompts and reference/canonical
+# solutions in scripts/run_experiment.py; see data/README.md.
+human-eval==1.0.3
+
+# Serializes candidate/reference functions (dynamically compiled from
+# LLM-generated source via exec) across a process boundary, so each call
+# can be executed with a hard, killable timeout - see src/metrics.py's
+# _Worker class and EXPERIMENT_LOG.md for why this was added.
+cloudpickle==3.1.2

@@ -1,0 +1,114 @@
+### IMPLEMENTATION 1 ###
+def valid_date(date):
+    import re
+    if not date:
+        return False
+
+    match = re.match(r'^(\d{2})-(\d{2})-(\d{4})$', date)
+    if not match:
+        return False
+
+    month, day = int(match.group(1)), int(match.group(2))
+
+    if month < 1 or month > 12:
+        return False
+
+    max_days = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+
+    return 1 <= day <= max_days[month]
+
+### IMPLEMENTATION 2 ###
+def valid_date(date):
+    if not date or len(date) != 10:
+        return False
+
+    if date[2] != '-' or date[5] != '-':
+        return False
+
+    month_str, day_str, year_str = date[0:2], date[3:5], date[6:10]
+
+    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):
+        return False
+
+    month, day = int(month_str), int(day_str)
+
+    if not (1 <= month <= 12):
+        return False
+
+    days_per_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    return 1 <= day <= days_per_month[month - 1]
+
+### IMPLEMENTATION 3 ###
+def valid_date(date):
+    if not date:
+        return False
+
+    parts = date.split('-')
+    if len(parts) != 3:
+        return False
+
+    try:
+        month_str, day_str, year_str = parts
+
+        if len(month_str) != 2 or len(day_str) != 2 or len(year_str) != 4:
+            return False
+
+        if not all(part.isdigit() for part in parts):
+            return False
+
+        month, day = int(month_str), int(day_str)
+
+        month_days = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+
+        return month in month_days and 1 <= day <= month_days[month]
+    except:
+        return False
+
+### IMPLEMENTATION 4 ###
+def valid_date(date):
+    if not date:
+        return False
+
+    def is_valid_format(s):
+        if len(s) != 10:
+            return False
+        if s[2] != '-' or s[5] != '-':
+            return False
+        return s[0:2].isdigit() and s[3:5].isdigit() and s[6:10].isdigit()
+
+    if not is_valid_format(date):
+        return False
+
+    month, day = int(date[0:2]), int(date[3:5])
+
+    if month < 1 or month > 12 or day < 1:
+        return False
+
+    max_days_list = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    return day <= max_days_list[month - 1]
+
+### IMPLEMENTATION 5 ###
+def valid_date(date):
+    if not date:
+        return False
+
+    parts = date.split('-')
+
+    if len(parts) != 3:
+        return False
+
+    month_str, day_str, year_str = parts
+
+    if not (len(month_str) == 2 and len(day_str) == 2 and len(year_str) == 4):
+        return False
+
+    try:
+        month, day, year = int(month_str), int(day_str), int(year_str)
+    except ValueError:
+        return False
+
+    valid_months = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+
+    return month in valid_months and 1 <= day <= valid_months[month]

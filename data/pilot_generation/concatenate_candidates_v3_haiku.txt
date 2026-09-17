@@ -1,0 +1,35 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+def concatenate(strings: List[str]) -> str:
+    result = ""
+    for s in strings:
+        result += s
+    return result
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+def concatenate(strings: List[str]) -> str:
+    return "".join(strings)
+
+### IMPLEMENTATION 3 ###
+from typing import List
+from functools import reduce
+
+def concatenate(strings: List[str]) -> str:
+    return reduce(lambda a, b: a + b, strings, "")
+
+### IMPLEMENTATION 4 ###
+from typing import List
+
+def concatenate(strings: List[str]) -> str:
+    if not strings:
+        return ""
+    return strings[0] + concatenate(strings[1:])
+
+### IMPLEMENTATION 5 ###
+from typing import List
+
+def concatenate(strings: List[str]) -> str:
+    return sum(strings, "")

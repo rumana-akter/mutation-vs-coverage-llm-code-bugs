@@ -1,0 +1,49 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    for i in range(len(numbers)):
+        for j in range(i + 1, len(numbers)):
+            if abs(numbers[i] - numbers[j]) < threshold:
+                return True
+    return False
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    sorted_nums = sorted(numbers)
+    for i in range(len(sorted_nums) - 1):
+        if sorted_nums[i + 1] - sorted_nums[i] < threshold:
+            return True
+    return False
+
+### IMPLEMENTATION 3 ###
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    for idx, num in enumerate(numbers):
+        for other_num in numbers[idx + 1:]:
+            if abs(num - other_num) < threshold:
+                return True
+    return False
+
+### IMPLEMENTATION 4 ###
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    return any(
+        abs(numbers[i] - numbers[j]) < threshold
+        for i in range(len(numbers))
+        for j in range(i + 1, len(numbers))
+    )
+
+### IMPLEMENTATION 5 ###
+from typing import List
+from itertools import combinations
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    for num1, num2 in combinations(numbers, 2):
+        if abs(num1 - num2) < threshold:
+            return True
+    return False

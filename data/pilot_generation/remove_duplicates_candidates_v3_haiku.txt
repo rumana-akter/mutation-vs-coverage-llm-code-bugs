@@ -1,0 +1,49 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+from collections import Counter
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    counts = Counter(numbers)
+    return [num for num in numbers if counts[num] == 1]
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    count_dict = {}
+    for num in numbers:
+        count_dict[num] = count_dict.get(num, 0) + 1
+    return [num for num in numbers if count_dict[num] == 1]
+
+### IMPLEMENTATION 3 ###
+from typing import List
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    return [num for num in numbers if numbers.count(num) == 1]
+
+### IMPLEMENTATION 4 ###
+from typing import List
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    seen = set()
+    duplicates = set()
+    for num in numbers:
+        if num in seen:
+            duplicates.add(num)
+        else:
+            seen.add(num)
+    return [num for num in numbers if num not in duplicates]
+
+### IMPLEMENTATION 5 ###
+from typing import List
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    count_dict = {}
+    for num in numbers:
+        count_dict[num] = count_dict.get(num, 0) + 1
+    result = []
+    for num in numbers:
+        if count_dict[num] == 1:
+            result.append(num)
+            count_dict[num] = 0
+    return result

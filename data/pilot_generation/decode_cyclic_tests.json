@@ -1,0 +1,14 @@
+[
+  {"args": [""], "expected_output": ""},
+  {"args": ["a"], "expected_output": "a"},
+  {"args": ["ab"], "expected_output": "ab"},
+  {"args": ["bca"], "expected_output": "abc"},
+  {"args": ["bcad"], "expected_output": "abcd"},
+  {"args": ["bcade"], "expected_output": "abcde"},
+  {"args": ["bcaefd"], "expected_output": "abcdef"},
+  {"args": ["bcaefdg"], "expected_output": "abcdefg"},
+  {"args": ["bcaefdgh"], "expected_output": "abcdefgh"},
+  {"args": ["bcaefdhig"], "expected_output": "abcdefghi"},
+  {"args": ["bcaefdhigklj"], "expected_output": "abcdefghijkl"},
+  {"args": ["231564"], "expected_output": "123456"}
+]
