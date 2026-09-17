@@ -1,0 +1,12 @@
+[
+  {"args": [["aa", "a", "aaa"]], "expected_output": ["aa"]},
+  {"args": [["ab", "a", "aaa", "cd"]], "expected_output": ["ab", "cd"]},
+  {"args": [[]], "expected_output": []},
+  {"args": [["a", "abc", "abcde"]], "expected_output": []},
+  {"args": [["dd", "aa", "cc", "bb"]], "expected_output": ["aa", "bb", "cc", "dd"]},
+  {"args": [["aa", "aa", "bb"]], "expected_output": ["aa", "aa", "bb"]},
+  {"args": [["ab", "a", "aaa", "cd", "ab"]], "expected_output": ["ab", "ab", "cd"]},
+  {"args": [["abcd", "ab", "abcdef", "cd"]], "expected_output": ["ab", "cd", "abcd", "abcdef"]},
+  {"args": [["ab"]], "expected_output": ["ab"]},
+  {"args": [["aaa", "aaa"]], "expected_output": []}
+]

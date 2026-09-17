@@ -1,0 +1,25 @@
+### IMPLEMENTATION 1 ###
+def string_xor(a: str, b: str) -> str:
+    result = ""
+    for i in range(len(a)):
+        if a[i] == b[i]:
+            result += '0'
+        else:
+            result += '1'
+    return result
+
+### IMPLEMENTATION 2 ###
+def string_xor(a: str, b: str) -> str:
+    return ''.join(str(int(a[i]) ^ int(b[i])) for i in range(len(a)))
+
+### IMPLEMENTATION 3 ###
+def string_xor(a: str, b: str) -> str:
+    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))
+
+### IMPLEMENTATION 4 ###
+def string_xor(a: str, b: str) -> str:
+    return ''.join(map(lambda x, y: str(int(x) ^ int(y)), a, b))
+
+### IMPLEMENTATION 5 ###
+def string_xor(a: str, b: str) -> str:
+    return bin(int(a, 2) ^ int(b, 2))[2:].zfill(len(a))

@@ -1,0 +1,44 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    result = []
+    current_max = float('-inf')
+    for num in numbers:
+        current_max = max(current_max, num)
+        result.append(current_max)
+    return result
+
+### IMPLEMENTATION 2 ###
+from typing import List
+from itertools import accumulate
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    return list(accumulate(numbers, max))
+
+### IMPLEMENTATION 3 ###
+from typing import List
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    return [max(numbers[:i+1]) for i in range(len(numbers))]
+
+### IMPLEMENTATION 4 ###
+from typing import List
+from functools import reduce
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    def reducer(acc, num):
+        new_max = max(acc[-1], num) if acc else num
+        return acc + [new_max]
+    return reduce(reducer, numbers, [])
+
+### IMPLEMENTATION 5 ###
+from typing import List
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    def generator():
+        running_max = float('-inf')
+        for num in numbers:
+            running_max = max(running_max, num)
+            yield running_max
+    return list(generator())

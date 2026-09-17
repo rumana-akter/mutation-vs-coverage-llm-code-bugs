@@ -1,0 +1,17 @@
+[
+{"args": [[]], "expected_output": null},
+{"args": [["a", "b", "c"]], "expected_output": "a"},
+{"args": [["a", "bb", "ccc"]], "expected_output": "ccc"},
+{"args": [["abc"]], "expected_output": "abc"},
+{"args": [["abc", "defg", "hi"]], "expected_output": "defg"},
+{"args": [["aa", "bb", "cc"]], "expected_output": "aa"},
+{"args": [["", "", ""]], "expected_output": ""},
+{"args": [[""]], "expected_output": ""},
+{"args": [["x", "xy", "xy", "x"]], "expected_output": "xy"},
+{"args": [["same", "same", "same"]], "expected_output": "same"},
+{"args": [["a", "", "abc"]], "expected_output": "abc"},
+{"args": [["", "a"]], "expected_output": "a"},
+{"args": [["longest", "short", "tiny"]], "expected_output": "longest"},
+{"args": [["abcd", "wxyz"]], "expected_output": "abcd"},
+{"args": [["z"]], "expected_output": "z"}
+]

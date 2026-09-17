@@ -1,0 +1,12 @@
+[
+  {"args": ["abc"], "expected_output": ["a", "ab", "abc"]},
+  {"args": [""], "expected_output": []},
+  {"args": ["a"], "expected_output": ["a"]},
+  {"args": ["ab"], "expected_output": ["a", "ab"]},
+  {"args": ["aaaa"], "expected_output": ["a", "aa", "aaa", "aaaa"]},
+  {"args": ["hello"], "expected_output": ["h", "he", "hel", "hell", "hello"]},
+  {"args": ["abcd"], "expected_output": ["a", "ab", "abc", "abcd"]},
+  {"args": ["aab"], "expected_output": ["a", "aa", "aab"]},
+  {"args": ["racecar"], "expected_output": ["r", "ra", "rac", "race", "racec", "raceca", "racecar"]},
+  {"args": ["zzzzzzzzzz"], "expected_output": ["z", "zz", "zzz", "zzzz", "zzzzz", "zzzzzz", "zzzzzzz", "zzzzzzzz", "zzzzzzzzz", "zzzzzzzzzz"]}
+]

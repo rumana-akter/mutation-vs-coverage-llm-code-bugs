@@ -1,0 +1,45 @@
+### IMPLEMENTATION 1 ###
+def median(l: list):
+    sorted_l = sorted(l)
+    n = len(sorted_l)
+    if n % 2 == 1:
+        return sorted_l[n // 2]
+    else:
+        mid1 = sorted_l[n // 2 - 1]
+        mid2 = sorted_l[n // 2]
+        return (mid1 + mid2) / 2
+
+### IMPLEMENTATION 2 ###
+def median(l: list):
+    sorted_l = sorted(l)
+    n = len(sorted_l)
+    middle = n // 2
+    if n % 2 == 1:
+        return sorted_l[middle]
+    return (sorted_l[middle - 1] + sorted_l[middle]) / 2
+
+### IMPLEMENTATION 3 ###
+def median(l: list):
+    sorted_l = sorted(l)
+    n = len(sorted_l)
+    if n % 2 == 1:
+        return float(sorted_l[n // 2])
+    return sum(sorted_l[(n - 1) // 2:(n + 1) // 2 + 1]) / 2
+
+### IMPLEMENTATION 4 ###
+def median(l: list):
+    sorted_l = sorted(l)
+    n = len(sorted_l)
+    low_idx = (n - 1) // 2
+    high_idx = n // 2
+    if low_idx == high_idx:
+        return sorted_l[low_idx]
+    else:
+        return (sorted_l[low_idx] + sorted_l[high_idx]) / 2
+
+### IMPLEMENTATION 5 ###
+def median(l: list):
+    sorted_l = sorted(l)
+    n = len(sorted_l)
+    result = sorted_l[n // 2] if n % 2 else (sorted_l[n // 2 - 1] + sorted_l[n // 2]) / 2
+    return result if n % 2 else float(result)

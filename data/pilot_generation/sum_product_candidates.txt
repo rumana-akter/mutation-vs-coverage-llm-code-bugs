@@ -1,0 +1,57 @@
+### IMPLEMENTATION 1 ###
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    total = 0
+    product = 1
+    for n in numbers:
+        total += n
+        product *= n
+    return (total, product)
+
+### IMPLEMENTATION 2 ###
+from typing import List, Tuple
+from functools import reduce
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    total = sum(numbers)
+    product = reduce(lambda acc, n: acc * n, numbers, 1)
+    return (total, product)
+
+### IMPLEMENTATION 3 ###
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    if not numbers:
+        return (0, 1)
+    total = numbers[0]
+    product = numbers[0]
+    for n in numbers[1:]:
+        total = total + n
+        product = product * n
+    return (total, product)
+
+### IMPLEMENTATION 4 ###
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    def helper(index: int, total: int, product: int) -> Tuple[int, int]:
+        if index == len(numbers):
+            return (total, product)
+        return helper(index + 1, total + numbers[index], product * numbers[index])
+
+    return helper(0, 0, 1)
+
+### IMPLEMENTATION 5 ###
+from typing import List, Tuple
+import math
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    total = sum(numbers)
+    product = math.prod(numbers)
+    return (total, product)

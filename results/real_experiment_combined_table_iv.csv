@@ -1,0 +1,2 @@
+benchmark,fault_model,mutation_FTR,branch_FTR,statement_FTR,mutation_FDR,branch_FDR,statement_FDR
+HumanEval+,claude-haiku-4-5,0.95,0.6325,0.6325,0.7,0.48375,0.48375

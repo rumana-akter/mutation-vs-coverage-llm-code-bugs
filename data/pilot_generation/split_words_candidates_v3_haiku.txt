@@ -1,0 +1,51 @@
+### IMPLEMENTATION 1 ###
+def split_words(txt):
+    if ' ' in txt:
+        return txt.split()
+    elif ',' in txt:
+        return txt.split(',')
+    else:
+        count = 0
+        for char in txt:
+            if char.islower():
+                if (ord(char) - ord('a')) % 2 == 1:
+                    count += 1
+        return count
+
+### IMPLEMENTATION 2 ###
+def split_words(txt):
+    if ' ' in txt:
+        return txt.split()
+    if ',' in txt:
+        return txt.split(',')
+    return sum(1 for c in txt if c.islower() and (ord(c) - ord('a')) % 2 == 1)
+
+### IMPLEMENTATION 3 ###
+import re
+
+def split_words(txt):
+    if re.search(r'\s', txt):
+        return re.split(r'\s+', txt)
+    elif ',' in txt:
+        return re.split(r',', txt)
+    else:
+        return sum(1 for c in txt if c.islower() and ord(c) % 2 == 0)
+
+### IMPLEMENTATION 4 ###
+def split_words(txt):
+    odd_position_letters = 'bdfhjlnprtvxz'
+
+    if ' ' in txt:
+        return txt.split()
+    elif ',' in txt:
+        return txt.split(',')
+    else:
+        return len([c for c in txt if c in odd_position_letters])
+
+### IMPLEMENTATION 5 ###
+def split_words(txt):
+    if any(c.isspace() for c in txt):
+        return txt.split()
+    if any(c == ',' for c in txt):
+        return txt.split(',')
+    return len(list(filter(lambda c: c.islower() and (ord(c) - ord('a')) & 1, txt)))

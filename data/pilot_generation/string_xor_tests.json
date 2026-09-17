@@ -1,0 +1,17 @@
+[
+  {"args": ["010", "110"], "expected_output": "100"},
+  {"args": ["0", "0"], "expected_output": "0"},
+  {"args": ["1", "1"], "expected_output": "0"},
+  {"args": ["1", "0"], "expected_output": "1"},
+  {"args": ["0", "1"], "expected_output": "1"},
+  {"args": ["000", "000"], "expected_output": "000"},
+  {"args": ["111", "111"], "expected_output": "000"},
+  {"args": ["101", "101"], "expected_output": "000"},
+  {"args": ["1010", "0101"], "expected_output": "1111"},
+  {"args": ["111", "000"], "expected_output": "111"},
+  {"args": ["000", "111"], "expected_output": "111"},
+  {"args": ["011", "010"], "expected_output": "001"},
+  {"args": ["1100", "1010"], "expected_output": "0110"},
+  {"args": ["10101010", "01010101"], "expected_output": "11111111"},
+  {"args": ["0100", "0001"], "expected_output": "0101"}
+]

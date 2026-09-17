@@ -1,0 +1,14 @@
+[
+  {"args": [[]], "expected_output": ""},
+  {"args": [["a"]], "expected_output": "a"},
+  {"args": [["a", "b", "c"]], "expected_output": "abc"},
+  {"args": [["hello"]], "expected_output": "hello"},
+  {"args": [["hello", "world"]], "expected_output": "helloworld"},
+  {"args": [[""]], "expected_output": ""},
+  {"args": [["", "", ""]], "expected_output": ""},
+  {"args": [["a", "", "b"]], "expected_output": "ab"},
+  {"args": [["hello ", "world"]], "expected_output": "hello world"},
+  {"args": [["  ", "  "]], "expected_output": "    "},
+  {"args": [["one", "two", "three", "four"]], "expected_output": "onetwothreefour"},
+  {"args": [[" ", "a", " ", "b", " "]], "expected_output": " a b "}
+]

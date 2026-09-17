@@ -1,0 +1,79 @@
+### IMPLEMENTATION 1 ###
+def is_simple_power(x, n):
+    if n == 1:
+        return x == 1
+    if n == 0:
+        return x == 1
+    if x <= 0 or n < 0:
+        return False
+    while x > 1:
+        if x % n != 0:
+            return False
+        x //= n
+    return x == 1
+
+
+### IMPLEMENTATION 2 ###
+import math
+
+def is_simple_power(x, n):
+    if n == 1:
+        return x == 1
+    if n == 0:
+        return x == 1
+    if x <= 0 or n <= 0:
+        return False
+    if x == 1:
+        return True
+    k = math.log(x) / math.log(n)
+    k_int = round(k)
+    return n ** k_int == x
+
+
+### IMPLEMENTATION 3 ###
+def is_simple_power(x, n):
+    if n == 1:
+        return x == 1
+    if n == 0:
+        return x == 1
+    if x <= 0 or n < 0:
+        return False
+    power = 1
+    while power < x:
+        power *= n
+    return power == x
+
+
+### IMPLEMENTATION 4 ###
+def is_simple_power(x, n):
+    if n == 1:
+        return x == 1
+    if n == 0:
+        return x == 1
+    if x <= 0 or n < 0:
+        return False
+    def helper(current):
+        if current == 1:
+            return True
+        if current < 1 or current % n != 0:
+            return False
+        return helper(current // n)
+    return helper(x)
+
+
+### IMPLEMENTATION 5 ###
+def is_simple_power(x, n):
+    if n == 1:
+        return x == 1
+    if n == 0:
+        return x == 1
+    if x <= 0 or n < 0:
+        return False
+    k = 0
+    power = 1
+    while power <= x:
+        if power == x:
+            return True
+        k += 1
+        power = n ** k
+    return False

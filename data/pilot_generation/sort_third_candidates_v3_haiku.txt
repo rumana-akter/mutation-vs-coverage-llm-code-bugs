@@ -1,0 +1,52 @@
+### IMPLEMENTATION 1 ###
+def sort_third(l: list):
+    result = l.copy()
+    sorted_thirds = sorted(l[::3])
+    result[::3] = sorted_thirds
+    return result
+
+### IMPLEMENTATION 2 ###
+def sort_third(l: list):
+    third_values = sorted([l[i] for i in range(len(l)) if i % 3 == 0])
+    result = []
+    third_idx = 0
+    for i in range(len(l)):
+        if i % 3 == 0:
+            result.append(third_values[third_idx])
+            third_idx += 1
+        else:
+            result.append(l[i])
+    return result
+
+### IMPLEMENTATION 3 ###
+def sort_third(l: list):
+    result = l.copy()
+    third_elements = []
+    indices = []
+    for i, val in enumerate(l):
+        if i % 3 == 0:
+            third_elements.append(val)
+            indices.append(i)
+    third_elements.sort()
+    for i, idx in enumerate(indices):
+        result[idx] = third_elements[i]
+    return result
+
+### IMPLEMENTATION 4 ###
+def sort_third(l: list):
+    if not l:
+        return l
+    sorted_thirds = sorted(l[::3])
+    result = l[:]
+    for i, val in enumerate(sorted_thirds):
+        result[i * 3] = val
+    return result
+
+### IMPLEMENTATION 5 ###
+def sort_third(l: list):
+    third_indices_vals = [(i, l[i]) for i in range(len(l)) if i % 3 == 0]
+    sorted_vals = [v for _, v in sorted(third_indices_vals, key=lambda x: x[1])]
+    result = l.copy()
+    for count, (idx, _) in enumerate(third_indices_vals):
+        result[idx] = sorted_vals[count]
+    return result

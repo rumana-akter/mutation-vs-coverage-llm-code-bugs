@@ -1,0 +1,149 @@
+### IMPLEMENTATION 1 ###
+def do_algebra(operator, operand):
+    expression = str(operand[0])
+    for i, op in enumerate(operator):
+        expression += op + str(operand[i + 1])
+    return eval(expression)
+
+### IMPLEMENTATION 2 ###
+def do_algebra(operator, operand):
+    operands = operand[:]
+    ops = operator[:]
+
+    # Process ** (exponentiation) right-to-left
+    i = len(ops) - 1
+    while i >= 0:
+        if ops[i] == '**':
+            operands[i] = operands[i] ** operands[i + 1]
+            operands.pop(i + 1)
+            ops.pop(i)
+        i -= 1
+
+    # Process * and // left-to-right
+    i = 0
+    while i < len(ops):
+        if ops[i] in ['*', '//']:
+            if ops[i] == '*':
+                operands[i] = operands[i] * operands[i + 1]
+            else:
+                operands[i] = operands[i] // operands[i + 1]
+            operands.pop(i + 1)
+            ops.pop(i)
+        else:
+            i += 1
+
+    # Process + and - left-to-right
+    result = operands[0]
+    for i, op in enumerate(ops):
+        if op == '+':
+            result += operands[i + 1]
+        else:
+            result -= operands[i + 1]
+
+    return result
+
+### IMPLEMENTATION 3 ###
+from functools import reduce
+from operator import add, sub, mul, floordiv, pow as op_pow
+
+def do_algebra(operator, operand):
+    op_map = {'+': add, '-': sub, '*': mul, '//': floordiv, '**': op_pow}
+    operands = operand[:]
+    ops = operator[:]
+
+    # Handle ** from right-to-left
+    for i in range(len(ops) - 1, -1, -1):
+        if ops[i] == '**':
+            operands[i] = operands[i] ** operands[i + 1]
+            operands.pop(i + 1)
+            ops.pop(i)
+
+    # Handle * and // from left-to-right
+    i = 0
+    while i < len(ops):
+        if ops[i] in ['*', '//']:
+            operands[i] = op_map[ops[i]](operands[i], operands[i + 1])
+            operands.pop(i + 1)
+            ops.pop(i)
+        else:
+            i += 1
+
+    # Reduce remaining + and - operations
+    return reduce(lambda acc, pair: op_map[pair[0]](acc, pair[1]),
+                  zip(ops, operands[1:]), operands[0])
+
+### IMPLEMENTATION 4 ###
+def do_algebra(operator, operand):
+    def precedence(op):
+        if op in ['+', '-']:
+            return 1
+        elif op in ['*', '//']:
+            return 2
+        else:
+            return 3
+
+    def apply_op(left, right, op):
+        if op == '+': return left + right
+        elif op == '-': return left - right
+        elif op == '*': return left * right
+        elif op == '//': return left // right
+        else: return left ** right
+
+    values = []
+    op_stack = []
+
+    for i, val in enumerate(operand):
+        values.append(val)
+
+        if i < len(operator):
+            current_op = operator[i]
+            while op_stack and precedence(op_stack[-1]) >= precedence(current_op):
+                right = values.pop()
+                left = values.pop()
+                op = op_stack.pop()
+                values.append(apply_op(left, right, op))
+            op_stack.append(current_op)
+
+    while op_stack:
+        right = values.pop()
+        left = values.pop()
+        op = op_stack.pop()
+        values.append(apply_op(left, right, op))
+
+    return values[0]
+
+### IMPLEMENTATION 5 ###
+def do_algebra(operator, operand):
+    def get_prec(op):
+        return {'+'  : 1, '-': 1, '*': 2, '//': 2, '**': 3}[op]
+
+    def compute(a, b, op):
+        if op == '+': return a + b
+        elif op == '-': return a - b
+        elif op == '*': return a * b
+        elif op == '//': return a // b
+        else: return a ** b
+
+    operands = operand[:]
+    ops = operator[:]
+
+    for prec_level in [3, 2, 1]:
+        if prec_level == 3:
+            i = len(ops) - 1
+            while i >= 0:
+                if get_prec(ops[i]) == prec_level:
+                    operands[i] = compute(operands[i], operands[i + 1], ops[i])
+                    del operands[i + 1]
+                    del ops[i]
+                i -= 1
+        else:
+            i = 0
+            while i < len(ops):
+                if get_prec(ops[i]) == prec_level:
+                    operands[i] = compute(operands[i], operands[i + 1], ops[i])
+                    del operands[i + 1]
+                    del ops[i]
+                else:
+                    i += 1
+
+    return operands[0]

@@ -1,0 +1,64 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    n = len(numbers)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if abs(numbers[i] - numbers[j]) < threshold:
+                return True
+    return False
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    sorted_numbers = sorted(numbers)
+    for i in range(1, len(sorted_numbers)):
+        if sorted_numbers[i] - sorted_numbers[i - 1] < threshold:
+            return True
+    return False
+
+### IMPLEMENTATION 3 ###
+from itertools import combinations
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    return any(abs(a - b) < threshold for a, b in combinations(numbers, 2))
+
+### IMPLEMENTATION 4 ###
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    idx = 0
+    while idx < len(numbers):
+        other = idx + 1
+        while other < len(numbers):
+            distance = numbers[idx] - numbers[other]
+            if distance < 0:
+                distance = -distance
+            if distance < threshold:
+                return True
+            other += 1
+        idx += 1
+    return False
+
+### IMPLEMENTATION 5 ###
+from typing import List
+import bisect
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    seen: List[float] = []
+    for num in numbers:
+        pos = bisect.bisect_left(seen, num)
+        if pos < len(seen) and seen[pos] - num < threshold:
+            return True
+        if pos > 0 and num - seen[pos - 1] < threshold:
+            return True
+        bisect.insort(seen, num)
+    return False

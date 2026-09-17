@@ -1,0 +1,17 @@
+[
+  {"args": ["03-11-2000"], "expected_output": true},
+  {"args": ["15-01-2012"], "expected_output": false},
+  {"args": ["04-0-2040"], "expected_output": false},
+  {"args": ["06-04-2020"], "expected_output": true},
+  {"args": ["06/04/2020"], "expected_output": false},
+  {"args": [""], "expected_output": false},
+  {"args": ["02-29-2020"], "expected_output": true},
+  {"args": ["02-30-2020"], "expected_output": false},
+  {"args": ["04-31-2020"], "expected_output": false},
+  {"args": ["12-31-2020"], "expected_output": true},
+  {"args": ["13-01-2020"], "expected_output": false},
+  {"args": ["00-15-2020"], "expected_output": false},
+  {"args": ["01-31-2020"], "expected_output": true},
+  {"args": ["09-31-2020"], "expected_output": false},
+  {"args": ["02-31-2020"], "expected_output": false}
+]

@@ -1,0 +1,50 @@
+### IMPLEMENTATION 1 ###
+def cycpattern_check(a, b):
+    if not b:
+        return True
+    return any(b[i:] + b[:i] in a for i in range(len(b)))
+
+### IMPLEMENTATION 2 ###
+def cycpattern_check(a, b):
+    if not b:
+        return True
+    for i in range(len(b)):
+        if b[i:] + b[:i] in a:
+            return True
+    return False
+
+### IMPLEMENTATION 3 ###
+from collections import deque
+
+def cycpattern_check(a, b):
+    if not b:
+        return True
+    d = deque(b)
+    for _ in range(len(b)):
+        if ''.join(d) in a:
+            return True
+        d.rotate(-1)
+    return False
+
+### IMPLEMENTATION 4 ###
+def cycpattern_check(a, b):
+    if not b:
+        return True
+    rotation = b
+    for _ in range(len(b)):
+        if rotation in a:
+            return True
+        rotation = rotation[1:] + rotation[0]
+    return False
+
+### IMPLEMENTATION 5 ###
+from itertools import islice, cycle
+
+def cycpattern_check(a, b):
+    if not b:
+        return True
+    for i in range(len(b)):
+        rotation = ''.join(islice(cycle(b), i, i + len(b)))
+        if rotation in a:
+            return True
+    return False

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Coverage / pytest artifacts
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# The paper itself is not redistributed in this repo - see README for the
+# arXiv link (arXiv:2609.09315).
+paper.pdf
+
+# Keep results/ tracked (that's the whole point of this repro), but ignore
+# accidental local scratch output.
+results/*.tmp

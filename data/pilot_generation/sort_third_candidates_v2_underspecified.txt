@@ -1,0 +1,59 @@
+### IMPLEMENTATION 1 ###
+def sort_third(l: list):
+    result = l[:]
+    indices = list(range(0, len(l), 3))
+    values = sorted(l[i] for i in indices)
+    for idx, val in zip(indices, values):
+        result[idx] = val
+    return result
+
+### IMPLEMENTATION 2 ###
+def sort_third(l: list):
+    third_values = []
+    for i in range(len(l)):
+        if i % 3 == 0:
+            third_values.append(l[i])
+    third_values.sort()
+    result = []
+    counter = 0
+    for i in range(len(l)):
+        if i % 3 == 0:
+            result.append(third_values[counter])
+            counter += 1
+        else:
+            result.append(l[i])
+    return result
+
+### IMPLEMENTATION 3 ###
+def sort_third(l: list):
+    n = len(l)
+    sorted_thirds = sorted(l[0:n:3])
+    result = list(l)
+    result[0:n:3] = sorted_thirds
+    return result
+
+### IMPLEMENTATION 4 ###
+def sort_third(l: list):
+    positions = [i for i in range(len(l)) if i % 3 == 0]
+    heap = [l[i] for i in positions]
+    heap.sort(reverse=True)
+    output = []
+    for i, val in enumerate(l):
+        if i % 3 == 0:
+            output.append(heap.pop())
+        else:
+            output.append(val)
+    return output
+
+### IMPLEMENTATION 5 ###
+def sort_third(l: list):
+    if not l:
+        return []
+    divisible = {}
+    for i, v in enumerate(l):
+        if i % 3 == 0:
+            divisible[i] = v
+    sorted_vals = sorted(divisible.values())
+    keys_in_order = sorted(divisible.keys())
+    mapping = dict(zip(keys_in_order, sorted_vals))
+    return [mapping[i] if i in mapping else v for i, v in enumerate(l)]

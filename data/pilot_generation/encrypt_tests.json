@@ -1,0 +1,14 @@
+[
+  {"args": ["hi"], "expected_output": "lm"},
+  {"args": ["asdfghjkl"], "expected_output": "ewhjklnop"},
+  {"args": ["gf"], "expected_output": "kj"},
+  {"args": ["et"], "expected_output": "ix"},
+  {"args": [""], "expected_output": ""},
+  {"args": ["a"], "expected_output": "e"},
+  {"args": ["z"], "expected_output": "d"},
+  {"args": ["yz"], "expected_output": "cd"},
+  {"args": ["wxyz"], "expected_output": "abcd"},
+  {"args": ["Hi"], "expected_output": "Hm"},
+  {"args": ["hello world"], "expected_output": "lipps asvph"},
+  {"args": ["abc123"], "expected_output": "efg123"}
+]

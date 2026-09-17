@@ -1,0 +1,55 @@
+### IMPLEMENTATION 1 ###
+def compare_one(a, b):
+    def to_num(val):
+        if isinstance(val, str):
+            return float(val.replace(',', '.'))
+        return float(val)
+
+    num_a = to_num(a)
+    num_b = to_num(b)
+
+    if num_a == num_b:
+        return None
+    return a if num_a > num_b else b
+
+### IMPLEMENTATION 2 ###
+def compare_one(a, b):
+    def normalize(x):
+        s = str(x).replace(',', '.')
+        return float(s)
+
+    if normalize(a) > normalize(b):
+        return a
+    elif normalize(b) > normalize(a):
+        return b
+    return None
+
+### IMPLEMENTATION 3 ###
+def compare_one(a, b):
+    conv = lambda x: float(str(x).replace(',', '.'))
+    diff = conv(a) - conv(b)
+
+    if diff == 0:
+        return None
+    return a if diff > 0 else b
+
+### IMPLEMENTATION 4 ###
+def compare_one(a, b):
+    get_float = lambda val: float(str(val).replace(',', '.'))
+    return None if get_float(a) == get_float(b) else max((a, b), key=get_float)
+
+### IMPLEMENTATION 5 ###
+def compare_one(a, b):
+    def to_float(val):
+        if isinstance(val, (int, float)):
+            return float(val)
+        return float(val.replace(',', '.'))
+
+    vals = [to_float(a), to_float(b)]
+
+    if vals[0] == vals[1]:
+        return None
+    elif vals[0] > vals[1]:
+        return a
+    else:
+        return b

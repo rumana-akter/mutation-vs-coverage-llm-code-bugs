@@ -1,0 +1,21 @@
+{
+  "batch": 2,
+  "n_tasks_attempted": 20,
+  "n_candidates_generated": 100,
+  "n_tests_generated": 218,
+  "n_tasks_with_fault": 3,
+  "n_iterations_per_criterion": 100,
+  "criteria": [
+    "statement",
+    "branch",
+    "mutation"
+  ],
+  "fault_model": "claude-haiku-4-5",
+  "call_timeout_seconds": 5.0,
+  "timeout_applied_uniformly_to": [
+    "build_outcomes (trigger/detect computation)",
+    "measure_per_test_coverage (statement/branch)",
+    "build_mutation_model (mutation scoring)"
+  ],
+  "task_selection_record": "data/scaleup_task_selection_record.json"
+}

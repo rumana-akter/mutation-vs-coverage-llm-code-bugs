@@ -1,0 +1,64 @@
+### IMPLEMENTATION 1 ###
+def triples_sum_to_zero(l: list):
+    n = len(l)
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if l[i] + l[j] + l[k] == 0:
+                    return True
+    return False
+
+### IMPLEMENTATION 2 ###
+def triples_sum_to_zero(l: list):
+    sorted_l = sorted(l)
+    n = len(sorted_l)
+
+    for i in range(n - 2):
+        left, right = i + 1, n - 1
+        target = -sorted_l[i]
+
+        while left < right:
+            current_sum = sorted_l[left] + sorted_l[right]
+            if current_sum == target:
+                return True
+            elif current_sum < target:
+                left += 1
+            else:
+                right -= 1
+
+    return False
+
+### IMPLEMENTATION 3 ###
+from itertools import combinations
+
+def triples_sum_to_zero(l: list):
+    for triple in combinations(l, 3):
+        if sum(triple) == 0:
+            return True
+    return False
+
+### IMPLEMENTATION 4 ###
+def triples_sum_to_zero(l: list):
+    for i in range(len(l)):
+        seen = set()
+        target = -l[i]
+        for j in range(len(l)):
+            if i != j:
+                complement = target - l[j]
+                if complement in seen:
+                    return True
+                seen.add(l[j])
+    return False
+
+### IMPLEMENTATION 5 ###
+def triples_sum_to_zero(l: list):
+    def helper(start, remaining_sum, count):
+        if count == 0:
+            return remaining_sum == 0
+        if start >= len(l):
+            return False
+
+        return (helper(start + 1, remaining_sum - l[start], count - 1) or
+                helper(start + 1, remaining_sum, count))
+
+    return helper(0, 0, 3)

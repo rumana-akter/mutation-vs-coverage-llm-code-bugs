@@ -1,0 +1,17 @@
+[
+  {"args": [""], "expected_output": ""},
+  {"args": ["cat"], "expected_output": "catac"},
+  {"args": ["cata"], "expected_output": "catac"},
+  {"args": ["a"], "expected_output": "a"},
+  {"args": ["aa"], "expected_output": "aa"},
+  {"args": ["ab"], "expected_output": "aba"},
+  {"args": ["abc"], "expected_output": "abcba"},
+  {"args": ["abcd"], "expected_output": "abcdcba"},
+  {"args": ["race"], "expected_output": "racecar"},
+  {"args": ["racecar"], "expected_output": "racecar"},
+  {"args": ["abcba"], "expected_output": "abcba"},
+  {"args": ["abba"], "expected_output": "abba"},
+  {"args": ["aaab"], "expected_output": "aaabaaa"},
+  {"args": ["xababa"], "expected_output": "xababax"},
+  {"args": ["abcbd"], "expected_output": "abcbdbcba"}
+]

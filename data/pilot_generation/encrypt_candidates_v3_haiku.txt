@@ -1,0 +1,54 @@
+### IMPLEMENTATION 1 ###
+def encrypt(s):
+    result = []
+    for char in s:
+        if 'a' <= char <= 'z':
+            result.append(chr((ord(char) - ord('a') + 4) % 26 + ord('a')))
+        elif 'A' <= char <= 'Z':
+            result.append(chr((ord(char) - ord('A') + 4) % 26 + ord('A')))
+        else:
+            result.append(char)
+    return ''.join(result)
+
+### IMPLEMENTATION 2 ###
+def encrypt(s):
+    import string
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    shift = 4
+    lower_map = {lower[i]: lower[(i + shift) % 26] for i in range(26)}
+    upper_map = {upper[i]: upper[(i + shift) % 26] for i in range(26)}
+    return ''.join(lower_map.get(c, upper_map.get(c, c)) for c in s)
+
+### IMPLEMENTATION 3 ###
+def encrypt(s):
+    import string
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    lower_shifted = lower[4:] + lower[:4]
+    upper_shifted = upper[4:] + upper[:4]
+    trans = str.maketrans(lower + upper, lower_shifted + upper_shifted)
+    return s.translate(trans)
+
+### IMPLEMENTATION 4 ###
+def encrypt(s):
+    encrypted = []
+    for c in s:
+        if c.isalpha():
+            base = ord('a') if c.islower() else ord('A')
+            shifted = (ord(c) - base + 4) % 26
+            encrypted.append(chr(shifted + base))
+        else:
+            encrypted.append(c)
+    return ''.join(encrypted)
+
+### IMPLEMENTATION 5 ###
+def encrypt(s):
+    def rotate_char(c):
+        if 'a' <= c <= 'z':
+            return chr(ord('a') + (ord(c) - ord('a') + 4) % 26)
+        elif 'A' <= c <= 'Z':
+            return chr(ord('A') + (ord(c) - ord('A') + 4) % 26)
+        else:
+            return c
+    return ''.join(map(rotate_char, s))

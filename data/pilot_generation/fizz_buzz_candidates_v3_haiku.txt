@@ -1,0 +1,44 @@
+### IMPLEMENTATION 1 ###
+def fizz_buzz(n: int):
+    count = 0
+    for i in range(n):
+        if i % 11 == 0 or i % 13 == 0:
+            count += str(i).count('7')
+    return count
+
+### IMPLEMENTATION 2 ###
+def fizz_buzz(n: int):
+    return sum(str(i).count('7') for i in range(n) if i % 11 == 0 or i % 13 == 0)
+
+### IMPLEMENTATION 3 ###
+def fizz_buzz(n: int):
+    valid_numbers = [i for i in range(n) if i % 11 == 0 or i % 13 == 0]
+    return sum(str(num).count('7') for num in valid_numbers)
+
+### IMPLEMENTATION 4 ###
+def fizz_buzz(n: int):
+    count = 0
+    i = 0
+    while i < n:
+        if i % 11 == 0 or i % 13 == 0:
+            for digit in str(i):
+                if digit == '7':
+                    count += 1
+        i += 1
+    return count
+
+### IMPLEMENTATION 5 ###
+def fizz_buzz(n: int):
+    def count_sevens(num):
+        result = 0
+        while num > 0:
+            if num % 10 == 7:
+                result += 1
+            num //= 10
+        return result
+
+    total = 0
+    for i in range(n):
+        if i % 11 == 0 or i % 13 == 0:
+            total += count_sevens(i)
+    return total

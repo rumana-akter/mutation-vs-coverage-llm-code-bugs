@@ -1,0 +1,14 @@
+[
+  {"args": ["[[]]"], "expected_output": true},
+  {"args": ["[]]]]]]][[[[[]"], "expected_output": false},
+  {"args": ["[][]"], "expected_output": false},
+  {"args": ["[]"], "expected_output": false},
+  {"args": ["[[][]]"], "expected_output": true},
+  {"args": ["[[]][["], "expected_output": true},
+  {"args": [""], "expected_output": false},
+  {"args": ["["], "expected_output": false},
+  {"args": ["[[[[]]]]"], "expected_output": true},
+  {"args": ["[[["], "expected_output": false},
+  {"args": ["]]]"], "expected_output": false},
+  {"args": ["[]]["], "expected_output": false}
+]

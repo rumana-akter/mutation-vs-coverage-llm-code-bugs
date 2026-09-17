@@ -1,0 +1,14 @@
+[
+  {"args": ["Hello world!"], "expected_output": ["Hello", "world!"]},
+  {"args": ["Hello,world!"], "expected_output": ["Hello", "world!"]},
+  {"args": ["abcdef"], "expected_output": 3},
+  {"args": ["one two three"], "expected_output": ["one", "two", "three"]},
+  {"args": ["a,b,c,d"], "expected_output": ["a", "b", "c", "d"]},
+  {"args": ["xyz"], "expected_output": 2},
+  {"args": ["aBcD"], "expected_output": 0},
+  {"args": [""], "expected_output": 0},
+  {"args": ["foo  bar"], "expected_output": ["foo", "bar"]},
+  {"args": ["ABCDEF"], "expected_output": 0},
+  {"args": ["apple,banana,cherry"], "expected_output": ["apple", "banana", "cherry"]},
+  {"args": ["Hello, world"], "expected_output": ["Hello,", "world"]}
+]

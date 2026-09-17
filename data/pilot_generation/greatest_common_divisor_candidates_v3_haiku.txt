@@ -1,0 +1,76 @@
+### IMPLEMENTATION 1 ###
+def greatest_common_divisor(a: int, b: int) -> int:
+    a, b = abs(a), abs(b)
+    while b:
+        a, b = b, a % b
+    return a
+
+### IMPLEMENTATION 2 ###
+def greatest_common_divisor(a: int, b: int) -> int:
+    a, b = abs(a), abs(b)
+    if b == 0:
+        return a
+    return greatest_common_divisor(b, a % b)
+
+### IMPLEMENTATION 3 ###
+def greatest_common_divisor(a: int, b: int) -> int:
+    a, b = abs(a), abs(b)
+    while a != b:
+        if a > b:
+            a = a - b
+        else:
+            b = b - a
+    return a
+
+### IMPLEMENTATION 4 ###
+def greatest_common_divisor(a: int, b: int) -> int:
+    a, b = abs(a), abs(b)
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    shift = 0
+    while ((a | b) & 1) == 0:
+        shift += 1
+        a >>= 1
+        b >>= 1
+    while (a & 1) == 0:
+        a >>= 1
+    while b:
+        while (b & 1) == 0:
+            b >>= 1
+        if a > b:
+            a, b = b, a
+        b -= a
+    return a << shift
+
+### IMPLEMENTATION 5 ###
+def greatest_common_divisor(a: int, b: int) -> int:
+    a, b = abs(a), abs(b)
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    factors_a, factors_b = {}, {}
+    temp_a, temp_b = a, b
+    d = 2
+    while d * d <= temp_a:
+        while temp_a % d == 0:
+            factors_a[d] = factors_a.get(d, 0) + 1
+            temp_a //= d
+        d += 1
+    if temp_a > 1:
+        factors_a[temp_a] = factors_a.get(temp_a, 0) + 1
+    d = 2
+    while d * d <= temp_b:
+        while temp_b % d == 0:
+            factors_b[d] = factors_b.get(d, 0) + 1
+            temp_b //= d
+        d += 1
+    if temp_b > 1:
+        factors_b[temp_b] = factors_b.get(temp_b, 0) + 1
+    result = 1
+    for prime in factors_a:
+        if prime in factors_b:
+            result *= prime ** min(factors_a[prime], factors_b[prime])
+    return result

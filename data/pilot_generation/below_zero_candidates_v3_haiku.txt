@@ -1,0 +1,57 @@
+### IMPLEMENTATION 1 ###
+from typing import List
+
+def below_zero(operations: List[int]) -> bool:
+    balance = 0
+    for op in operations:
+        balance += op
+        if balance < 0:
+            return True
+    return False
+
+### IMPLEMENTATION 2 ###
+from typing import List
+
+def below_zero(operations: List[int]) -> bool:
+    balance = 0
+    i = 0
+    while i < len(operations):
+        balance += operations[i]
+        if balance < 0:
+            return True
+        i += 1
+    return False
+
+### IMPLEMENTATION 3 ###
+from typing import List
+
+def below_zero(operations: List[int]) -> bool:
+    balances = []
+    balance = 0
+    for op in operations:
+        balance += op
+        balances.append(balance)
+    return any(b < 0 for b in balances)
+
+### IMPLEMENTATION 4 ###
+from typing import List
+from itertools import accumulate
+
+def below_zero(operations: List[int]) -> bool:
+    return any(b < 0 for b in accumulate(operations, initial=0))
+
+### IMPLEMENTATION 5 ###
+from typing import List
+from functools import reduce
+
+def below_zero(operations: List[int]) -> bool:
+    def update_state(state, op):
+        if state[1]:
+            return state
+        new_balance = state[0] + op
+        return (new_balance, new_balance < 0)
+
+    if not operations:
+        return False
+    _, found = reduce(update_state, operations, (0, False))
+    return found

@@ -1,0 +1,14 @@
+[
+  {"args": [0], "expected_output": []},
+  {"args": [1], "expected_output": []},
+  {"args": [2], "expected_output": []},
+  {"args": [3], "expected_output": [2]},
+  {"args": [4], "expected_output": [2, 3]},
+  {"args": [5], "expected_output": [2, 3]},
+  {"args": [6], "expected_output": [2, 3, 5]},
+  {"args": [10], "expected_output": [2, 3, 5, 7]},
+  {"args": [11], "expected_output": [2, 3, 5, 7]},
+  {"args": [18], "expected_output": [2, 3, 5, 7, 11, 13, 17]},
+  {"args": [20], "expected_output": [2, 3, 5, 7, 11, 13, 17, 19]},
+  {"args": [30], "expected_output": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]}
+]
