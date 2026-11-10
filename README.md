@@ -4,7 +4,7 @@
 
 Reproduce the methodology behind **Table IV** of *"How effective are
 traditional test criteria at detecting bugs in large language models
-generated code?"* (arXiv:2609.09315): for LLM-generated faulty code, do
+generated code?"* ([arXiv:2609.09315](https://arxiv.org/abs/2609.09315)): for LLM-generated faulty code, do
 statement, branch, and mutation coverage predict fault detection? The
 paper's own faults, test pools, and fault-generating models are not
 publicly available (it is a very recent preprint; search documented in
